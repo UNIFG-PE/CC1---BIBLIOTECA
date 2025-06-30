@@ -62,11 +62,74 @@ public class BibliotecaService {
         boolean emprestado = usuarios.values().stream().anyMatch(u -> u.getLivrosEmprestados().contains(livro));
 
         if (emprestado) {
-            System.out.println("Livro emprestado. NÃ£o pode ser removido.");
+            System.out.println("Livro emprestado. Não pode ser removido.");
             return false;
         }
 
         livros.remove(isbn);
+        salvarDados();
+        return true;
+    }
+
+    // CRUD Usuários
+    public boolean adicionarUsuario(Usuario usuario) {
+        if (usuarios.containsKey(usuario.getId()))
+            return false;
+        usuarios.put(usuario.getId(), usuario);
+        salvarDados();
+        return true;
+    }
+
+    public Usuario buscarUsuario(String id) {
+        return usuarios.get(id);
+    }
+
+    public List<Usuario> listarUsuarios() {
+        return new ArrayList<>(usuarios.values());
+    }
+
+    public boolean removerUsuario(String id) {
+        Usuario usuario = usuarios.get(id);
+        if (usuario == null)
+            return false;
+
+        if (!usuario.getLivrosEmprestados().isEmpty()) {
+            System.out.println("Usuário tem livros emprestados.");
+            return false;
+        }
+
+        usuarios.remove(id);
+        salvarDados();
+        return true;
+    }
+
+    // Empréstimos
+    public boolean emprestarLivro(String isbn, String idUsuario) {
+        Livro livro = livros.get(isbn);
+        Usuario usuario = usuarios.get(idUsuario);
+
+        if (livro == null || usuario == null)
+            return false;
+        if (!livro.isDisponivel())
+            return false;
+
+        livro.setDisponivel(false);
+        usuario.adicionarLivroEmprestado(livro);
+        salvarDados();
+        return true;
+    }
+
+    public boolean devolverLivro(String isbn, String idUsuario) {
+        Livro livro = livros.get(isbn);
+        Usuario usuario = usuarios.get(idUsuario);
+
+        if (livro == null || usuario == null)
+            return false;
+        if (!usuario.getLivrosEmprestados().contains(livro))
+            return false;
+
+        livro.setDisponivel(true);
+        usuario.removerLivroEmprestado(livro);
         salvarDados();
         return true;
     }
