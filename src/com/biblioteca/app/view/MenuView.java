@@ -15,13 +15,15 @@ public class MenuView {
 	public static void exibirMenuPrincipal() {
 		int opcao;
 		do {
-			System.out.println("\n======= Biblioteca ========");
+			System.out.println("==========================");
+			System.out.println("  	Biblioteca ");
+			System.out.println("==========================");
 			System.out.println("1 - Gerenciar Livros");
 			System.out.println("2 - Gerenciar Usuários");
 			System.out.println("3 - Empréstimo/Devolução");
 			System.out.println("0 - Sair");
 			System.out.print("Escolha uma opção: ");
-			System.out.println("\n==========================");
+			System.out.println("\n-------------------------");
 			opcao = Integer.parseInt(scanner.nextLine());
 
 			switch (opcao) {
@@ -35,13 +37,15 @@ public class MenuView {
 	}
 
 	private static void menuLivros() {
-		System.out.println("\n--- Gerenciar Livros ---");
+		System.out.println("==========================");
+		System.out.println("  Gerenciar Livros ");
+		System.out.println("==========================");
 		System.out.println("1. Adicionar");
 		System.out.println("2. Listar");
 		System.out.println("3. Atualizar");
 		System.out.println("4. Remover");
 		System.out.print("Escolha: ");
-		System.out.println("\n==========================");
+		System.out.println("\n-------------------------");
 		int opcao = Integer.parseInt(scanner.nextLine());
 
 		switch (opcao) {
@@ -108,12 +112,14 @@ public class MenuView {
 	}
 
 	private static void menuUsuarios() {
-		System.out.println("\n--- Gerenciar Usuários ---");
+		System.out.println("==========================");
+		System.out.println("  Gerenciar Usuários ");
+		System.out.println("==========================");
 		System.out.println("1. Adicionar");
 		System.out.println("2. Listar");
 		System.out.println("3. Remover");
 		System.out.print("Escolha: ");
-		System.out.println("\n==========================");
+		System.out.println("\n-------------------------");
 		int opcao = Integer.parseInt(scanner.nextLine());
 
 		switch (opcao) {
@@ -154,11 +160,13 @@ public class MenuView {
 	}
 
 	private static void menuEmprestimos() {
-		System.out.println("\n--- Empréstimo/Devolução ---");
+		System.out.println("==========================");
+		System.out.println("  Empréstimo/Devolução ");
+		System.out.println("==========================");
 		System.out.println("1. Emprestar");
 		System.out.println("2. Devolver");
 		System.out.print("Escolha: ");
-		System.out.println("\n==========================");
+		System.out.println("\n-------------------------");
 		int opcao = Integer.parseInt(scanner.nextLine());
 
 		switch (opcao) {
